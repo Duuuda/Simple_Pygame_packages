@@ -234,3 +234,28 @@ class Map:
     # update_map--------------------------------------------------------------------------------------------------------
     def update(self):
         self.surface.blit(self.__all_map, (0, 0))
+
+
+if __name__ == '__main__':
+    WIN_WIDTH = 0
+    WIN_HEIGHT = 0
+    FPS = 120
+
+    pygame.init()
+    screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT), pygame.FULLSCREEN)
+    pygame.display.set_caption('GUI_test')
+    clock = pygame.time.Clock()
+
+    mapp = Map(screen)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mapp.re_generation()
+            if event.type == pygame.QUIT:
+                raise SystemExit
+
+        mapp.update()
+
+        pygame.display.flip()
+        clock.tick(FPS)
